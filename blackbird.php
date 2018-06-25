@@ -17,7 +17,7 @@
 namespace Sup\Blackbird;
 
 use Sup\Blackbird\Plugin;
-use Sup\Blackbird\Provider;
+use Sup\Blackbird\Feature;
 
 /**
  * Require the Composer autoloader
@@ -51,5 +51,8 @@ function blackbird() {
 $blackbird = blackbird()
 	->set_directory( plugin_dir_path( __FILE__ ) )
 	->set_url( plugins_url( '', __FILE__ ) )
-	->register_hooks( new Provider\ThemeFeatures() )
 	->run();
+
+$blackbird
+	->features()
+	->register( new Feature\CdnJquery( $blackbird ) );
