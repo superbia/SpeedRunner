@@ -59,7 +59,7 @@ abstract class AbstractFeature implements HookProviderInterface {
 	 * @return string
 	 */
 	public function get_id() {
-		return $this->id;
+		return 'blackbird-' . $this->id;
 	}
 
 	/**
@@ -90,6 +90,6 @@ abstract class AbstractFeature implements HookProviderInterface {
 	 * @return bool
 	 */
 	public function is_supported() {
-		return current_theme_supports( 'blackbird-' . $this->get_id() );
+		return current_theme_supports( $this->get_id() );
 	}
 }

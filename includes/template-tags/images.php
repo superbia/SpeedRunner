@@ -32,7 +32,7 @@ function get_attachment_ratio_image( $attachment_id, $size, $attr = '' ) {
 	$ratio_class = ( isset( $attr['ratio_container'] ) ) ? $attr['ratio_container'] : true;
 
 	if ( $image ) {
-		$html = blackbird()->features()['enable-lazy-loading']->get_ratio_container( $image, $attachment_id, $size, $ratio_class );
+		$html = blackbird()->features()['blackbird-enable-lazy-loading']->get_ratio_container( $image, $attachment_id, $size, $ratio_class );
 	}
 
 	return $html;

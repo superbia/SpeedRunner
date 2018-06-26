@@ -26,6 +26,26 @@ class LazyLoad extends AbstractFeature {
 	protected $id = 'enable-lazy-loading';
 
 	/**
+	 * Feature args.
+	 *
+	 * @since 0.2.0
+	 * @var array
+	 */
+	protected $args;
+
+	/**
+	 * Method for loading the feature.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @return $this
+	 */
+	public function load() {
+		$this->args = get_theme_support( $this->get_id() );
+		return $this;
+	}
+
+	/**
 	 * Register feature hooks.
 	 *
 	 * @since 0.1.0
