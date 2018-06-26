@@ -45,14 +45,19 @@ function blackbird() {
 	return $instance;
 }
 
-/**
- * Setup the main plugin instance and load into WordPress
- */
 $blackbird = blackbird()
 	->set_directory( plugin_dir_path( __FILE__ ) )
 	->set_url( plugins_url( '', __FILE__ ) )
 	->run();
 
+/**
+ * Load template functions.
+ */
+require $blackbird->get_path( 'includes/template-tags/images.php' );
+
+/**
+ * Load theme features.
+ */
 $blackbird
 	->features()
 	->register( new Feature\CdnJquery( $blackbird ) )
