@@ -55,4 +55,5 @@ $blackbird = blackbird()
 
 $blackbird
 	->features()
-	->register( new Feature\CdnJquery( $blackbird ) );
+	->register( new Feature\CdnJquery( $blackbird ) )
+	->register( new Feature\LazyLoad( $blackbird ) );
