@@ -15,7 +15,7 @@ const paths = {
 export function scripts() {
 	return gulp.src( paths.scripts.src, { sourcemaps: true } )
 		.pipe( uglify() )
-		.pipe( concat( 'blackbird.min.js' ) )
+		.pipe( concat( 'lazysizes.min.js' ) )
 		.pipe( gulp.dest( paths.scripts.dest ) );
 }
 

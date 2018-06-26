@@ -1644,6 +1644,10 @@ last-run@^1.1.0:
     default-resolution "^2.0.0"
     es6-weak-map "^2.0.1"
 
+lazysizes@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-4.0.4.tgz#a28541570f32a7c385efdb798c06c22b3fd08544"
+
 lazystream@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/lazystream/-/lazystream-1.0.0.tgz#f6995fe0f820392f61396be89462407bb77168e4"

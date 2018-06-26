@@ -93,3 +93,9 @@ echo get_attachment_ratio_image(
 
 #### Disable JavaScript
 The Lazysizes JavaScript enqueued by Blackbird can be removed by passing the `'enqueue' => false` option when adding lazy loading theme support.
+
+```php
+add_theme_support( 'blackbird-enable-lazy-loading', [
+	'enqueue' => false,
+] );
+```

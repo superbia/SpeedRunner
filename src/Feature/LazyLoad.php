@@ -41,7 +41,14 @@ class LazyLoad extends AbstractFeature {
 	 * @return $this
 	 */
 	public function load() {
-		$this->args = get_theme_support( $this->get_id() );
+		$defaults = [
+			'enqueue' => true,
+		];
+
+		$args       = get_theme_support( $this->get_id() );
+		$args       = ( is_array( $args ) ) ? $args[0] : [];
+		$this->args = wp_parse_args( $args, $defaults );
+
 		return $this;
 	}
 
@@ -55,6 +62,7 @@ class LazyLoad extends AbstractFeature {
 		add_filter( 'the_content', array( $this, 'modify_content_image_attributes' ) );
 		add_filter( 'post_thumbnail_html', array( $this, 'wrap_post_thumbnail_with_ratio_container' ), 10, 5 );
 		add_action( 'embed_oembed_html', array( $this, 'lazyload_video_embeds' ), 10, 2 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 5 );
 
 		$this->plugin->register_hooks( new Provider\EmbedCustomisations( $this ) );
 	}
@@ -156,6 +164,19 @@ class LazyLoad extends AbstractFeature {
 	}
 
 	/**
+	 * Enqueue scripts.
+	 *
+	 * @since 0.2.0
+	 */
+	public function enqueue_scripts() {
+		$args = $this->get_args();
+
+		if ( false !== $this->get_args()['enqueue'] ) {
+			wp_enqueue_script( 'lazysizes', $this->plugin->get_url( 'assets/dist/scripts/lazysizes.min.js' ), [], null, true );
+		}
+	}
+
+	/**
 	 * Wrap an image with a ratio container.
 	 *
 	 * @since 0.2.0
@@ -183,5 +204,16 @@ class LazyLoad extends AbstractFeature {
 	 */
 	public function get_placeholder_src() {
 		return 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+	}
+
+	/**
+	 * Get the feature args.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return string
+	 */
+	public function get_args() {
+		return $this->args;
 	}
 }
