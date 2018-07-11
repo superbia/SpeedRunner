@@ -6,6 +6,9 @@ import uglify from 'gulp-uglify';
 const paths = {
 	scripts: {
 		src: [
+			'node_modules/lazysizes/plugins/respimg/ls.respimg.js',
+			'node_modules/lazysizes/plugins/unveilhooks/ls.unveilhooks.js',
+			'node_modules/lazysizes/plugins/bgset/ls.bgset.js',
 			'node_modules/lazysizes/lazysizes.js',
 		],
 		dest: 'assets/dist/scripts/',
