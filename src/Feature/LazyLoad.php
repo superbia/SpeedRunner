@@ -5,13 +5,13 @@
  * Modify images and embeds for lazy loading with lazysizes.
  *
  * @link https://github.com/aFarkas/lazysizes
- * @package Blackbird
+ * @package SpeedRunner
  * @since 0.2.0
  */
 
-namespace Sup\Blackbird\Feature;
+namespace Sup\SpeedRunner\Feature;
 
-use Sup\Blackbird\Provider;
+use Sup\SpeedRunner\Provider;
 
 /**
  * CDN jQuery class.

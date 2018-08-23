@@ -2,16 +2,16 @@
 /**
  * Hook provider interface.
  *
- * @package Blackbird
+ * @package SpeedRunner
  * @since   0.1.0
  */
 
-namespace Sup\Blackbird;
+namespace Sup\SpeedRunner;
 
 /**
  * Hook provider interface.
  *
- * @package Blackbird
+ * @package SpeedRunner
  * @since 0.1.0
  */
 interface HookProviderInterface {

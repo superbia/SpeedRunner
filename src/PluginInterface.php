@@ -2,12 +2,12 @@
 /**
  * Plugin interface.
  *
- * @package    Blackbird
+ * @package    SpeedRunner
  * @subpackage Plugin
  * @since      0.1.0
  */
 
-namespace Sup\Blackbird;
+namespace Sup\SpeedRunner;
 
 /**
  * Plugin interface.

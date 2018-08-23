@@ -1,6 +1,6 @@
 {
-	"name": "superbia/blackbird",
-	"description": " Mach 3+ speed optimisations for WordPress.",
+	"name": "superbia/speedrunner",
+	"description": "Mach 3+ speed optimisations for WordPress.",
 	"type": "wordpress-plugin",
 	"license": "GPLv3",
 	"authors": [
@@ -13,6 +13,6 @@
 		"stevegrunwell/wp-enforcer": "^0.5.0"
 	},
 	"autoload": {
-        "psr-4": {"Sup\\Blackbird\\": "src/"}
+        "psr-4": {"Sup\\SpeedRunner\\": "src/"}
     }
 }

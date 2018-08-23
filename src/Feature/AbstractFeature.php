@@ -2,15 +2,15 @@
 /**
  * Feature base.
  *
- * @package    Blackbird
+ * @package    SpeedRunner
  * @subpackage Plugin
  * @since      0.1.0
  */
 
-namespace Sup\Blackbird\Feature;
+namespace Sup\SpeedRunner\Feature;
 
-use Sup\Blackbird\HookProviderInterface;
-use Sup\Blackbird\PluginInterface;
+use Sup\SpeedRunner\HookProviderInterface;
+use Sup\SpeedRunner\PluginInterface;
 
 /**
  * Base feature class.
@@ -59,7 +59,7 @@ abstract class AbstractFeature implements HookProviderInterface {
 	 * @return string
 	 */
 	public function get_id() {
-		return 'blackbird-' . $this->id;
+		return 'speedrunner-' . $this->id;
 	}
 
 	/**

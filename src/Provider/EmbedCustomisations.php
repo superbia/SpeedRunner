@@ -2,16 +2,16 @@
 /**
  * Embed customisations.
  *
- * @package    Blackbird
+ * @package    SpeedRunner
  * @subpackage Plugin
  * @since 0.2.0
  */
 
-namespace Sup\Blackbird\Provider;
+namespace Sup\SpeedRunner\Provider;
 
-use Sup\Blackbird\HookProviderInterface;
-use Sup\Blackbird\PluginAwareInterface;
-use Sup\Blackbird\PluginAwareTrait;
+use Sup\SpeedRunner\HookProviderInterface;
+use Sup\SpeedRunner\PluginAwareInterface;
+use Sup\SpeedRunner\PluginAwareTrait;
 
 /**
  * Embed customisations provider class.

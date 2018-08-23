@@ -2,11 +2,11 @@
 /**
  * CDN jQuery feature.
  *
- * @package Blackbird
+ * @package SpeedRunner
  * @since 0.1.0
  */
 
-namespace Sup\Blackbird\Feature;
+namespace Sup\SpeedRunner\Feature;
 
 /**
  * CDN jQuery class.

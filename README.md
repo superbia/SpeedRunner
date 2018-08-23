@@ -1,6 +1,6 @@
-# Blackbird
+# SpeedRunner
 
-Mach 3+ speed optimisations for WordPress inspired by the [SR-71 Blackbird](https://en.wikipedia.org/wiki/Lockheed_SR-71_Blackbird).
+Mach 3+ speed optimisations for WordPress inspired by the [SR-71 Blackbird](https://en.wikipedia.org/wiki/Lockheed_SR-71_SpeedRunner).
 
 ## Requirements
 * [Git](https://git-scm.com)
@@ -33,7 +33,7 @@ Enable lazy loading within your theme by using `add_theme_support` in your theme
 add_action( 'after_setup_theme', 'theme_setup' );
 
 function theme_setup() {
-	add_theme_support( 'blackbird-enable-lazy-loading' );
+	add_theme_support( 'speedrunner-enable-lazy-loading' );
 }
 ```
 
@@ -80,7 +80,7 @@ echo wp_get_attachment_image(
 
 Lazy load a WordPress image attachment but wrapped in a container with an intrinsic ratio:
 ```php
-use function Sup\Blackbird\Template\get_attachment_ratio_image;
+use function Sup\SpeedRunner\Template\get_attachment_ratio_image;
 
 echo get_attachment_ratio_image(
 	get_post_thumbnail_id(),
@@ -92,10 +92,10 @@ echo get_attachment_ratio_image(
 ```
 
 #### Disable JavaScript
-The Lazysizes JavaScript enqueued by Blackbird can be removed by passing the `'enqueue' => false` option when adding lazy loading theme support.
+The Lazysizes JavaScript enqueued by SpeedRunner can be removed by passing the `'enqueue' => false` option when adding lazy loading theme support.
 
 ```php
-add_theme_support( 'blackbird-enable-lazy-loading', [
+add_theme_support( 'speedrunner-enable-lazy-loading', [
 	'enqueue' => false,
 ] );
 ```

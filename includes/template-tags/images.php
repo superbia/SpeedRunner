@@ -2,13 +2,13 @@
 /**
  * Functions for displaying images in theme templates.
  *
- * @package Blackbird
+ * @package SpeedRunner
  * @since 0.2.0
  */
 
-namespace Sup\Blackbird\Template;
+namespace Sup\SpeedRunner\Template;
 
-use function Sup\Blackbird\blackbird;
+use function Sup\SpeedRunner\speedrunner;
 
 /**
  * Get an image wrapped in a container with an intrinsic ratio.
@@ -32,7 +32,7 @@ function get_attachment_ratio_image( $attachment_id, $size, $attr = '' ) {
 	$ratio_class = ( isset( $attr['ratio_container'] ) ) ? $attr['ratio_container'] : true;
 
 	if ( $image ) {
-		$html = blackbird()->features()['blackbird-enable-lazy-loading']->get_ratio_container( $image, $attachment_id, $size, $ratio_class );
+		$html = speedrunner()->features()['speedrunner-enable-lazy-loading']->get_ratio_container( $image, $attachment_id, $size, $ratio_class );
 	}
 
 	return $html;

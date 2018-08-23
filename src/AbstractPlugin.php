@@ -2,12 +2,12 @@
 /**
  * Common plugin functionality.
  *
- * @package    Blackbird
+ * @package    SpeedRunner
  * @subpackage Plugin
  * @since      0.1.0
  */
 
-namespace Sup\Blackbird;
+namespace Sup\SpeedRunner;
 
 /**
  * Abstract plugin class.

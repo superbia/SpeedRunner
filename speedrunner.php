@@ -1,23 +1,23 @@
 <?php
 /**
- * Plugin Name:  Blackbird
- * Plugin URI:   https://bitbucket.org/superbiaweb/blackbird
+ * Plugin Name:  SpeedRunner
+ * Plugin URI:   https://bitbucket.org/superbiaweb/speedrunner
  * Description:  Mach 3+ speed optimisations for WordPress.
  * Author:       Dylan Nichols, Superbia
  * Author URI:   https://superbia.com.au
- * Text Domain:  blackbird
+ * Text Domain:  speedrunner
  * Domain Path:  /languages
  * Version:      0.2.1
  * License:      GPL v3
  *
- * @package      Blackbird
+ * @package      SpeedRunner
  * @subpackage   Plugin
  */
 
-namespace Sup\Blackbird;
+namespace Sup\SpeedRunner;
 
-use Sup\Blackbird\Plugin;
-use Sup\Blackbird\Feature;
+use Sup\SpeedRunner\Plugin;
+use Sup\SpeedRunner\Feature;
 
 /**
  * Require the Composer autoloader
@@ -33,9 +33,9 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
  *
  * @since 0.1.0
  *
- * @return Blackbird
+ * @return SpeedRunner
  */
-function blackbird() {
+function speedrunner() {
 	static $instance;
 
 	if ( null === $instance ) {
@@ -45,7 +45,7 @@ function blackbird() {
 	return $instance;
 }
 
-$blackbird = blackbird()
+$speedrunner = speedrunner()
 	->set_directory( plugin_dir_path( __FILE__ ) )
 	->set_url( plugins_url( '', __FILE__ ) )
 	->run();
@@ -53,12 +53,12 @@ $blackbird = blackbird()
 /**
  * Load template functions.
  */
-require $blackbird->get_path( 'includes/template-tags/images.php' );
+require $speedrunner->get_path( 'includes/template-tags/images.php' );
 
 /**
  * Load theme features.
  */
-$blackbird
+$speedrunner
 	->features()
-	->register( new Feature\CdnJquery( $blackbird ) )
-	->register( new Feature\LazyLoad( $blackbird ) );
+	->register( new Feature\CdnJquery( $speedrunner ) )
+	->register( new Feature\LazyLoad( $speedrunner ) );

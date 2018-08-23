@@ -2,12 +2,12 @@
 /**
  * Feature collection.
  *
- * @package    Blackbird
+ * @package    SpeedRunner
  * @subpackage Plugin
  * @since      0.1.0
  */
 
-namespace Sup\Blackbird;
+namespace Sup\SpeedRunner;
 
 /**
  * Feature collection class.
@@ -26,7 +26,7 @@ class FeatureCollection implements \ArrayAccess, \Countable, \Iterator {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param  \Sup\Blackbird\Feature\AbstractFeature $feature Feature object.
+	 * @param  \Sup\SpeedRunner\Feature\AbstractFeature $feature Feature object.
 	 * @return $this
 	 */
 	public function register( $feature ) {

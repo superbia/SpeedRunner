@@ -2,12 +2,12 @@
 /**
  * Main plugin class
  *
- * @package    Blackbird
+ * @package    SpeedRunner
  * @subpackage Plugin
  * @since      0.1.0
  */
 
-namespace Sup\Blackbird;
+namespace Sup\SpeedRunner;
 
 /**
  * The core plugin class.

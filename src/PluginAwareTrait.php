@@ -2,16 +2,16 @@
 /**
  * Plugin aware trait.
  *
- * @package Blackbird
+ * @package SpeedRunner
  * @since   0.1.0
  */
 
-namespace Sup\Blackbird;
+namespace Sup\SpeedRunner;
 
 /**
  * Plugin aware trait.
  *
- * @package Blackbird
+ * @package SpeedRunner
  * @since   0.1.0
  */
 trait PluginAwareTrait {
