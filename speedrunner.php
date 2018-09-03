@@ -7,7 +7,7 @@
  * Author URI:   https://superbia.com.au
  * Text Domain:  speedrunner
  * Domain Path:  /languages
- * Version:      0.2.1
+ * Version:      0.2.3
  * License:      GPL v3
  *
  * @package      SpeedRunner
