@@ -192,7 +192,7 @@ class LazyLoad extends AbstractFeature {
 		$ratio = ( $image[2] / $image[1] ) * 100;
 		$class = ( is_string( $class ) ) ? $class : 'u-ratio';
 
-		return '<div class="' . esc_attr( $class ) . '" style="padding-bottom:' . esc_attr( $ratio ) . '">' . $html . '</div>';
+		return '<div class="' . esc_attr( $class ) . '" style="padding-bottom:' . esc_attr( $ratio ) . '%">' . $html . '</div>';
 	}
 
 	/**
