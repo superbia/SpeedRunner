@@ -130,7 +130,7 @@ class LazyLoad extends AbstractFeature {
 	 * @return string Post thumbnail markup wrapped in a ratio container.
 	 */
 	public function wrap_post_thumbnail_with_ratio_container( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
-		if ( isset( $attr['ratio_container'] ) ) {
+		if ( isset( $attr['ratio_container'] ) && $post_thumbnail_id ) {
 			// Remove the attr used to flag that thumbnail should be wrapped.
 			$html = str_replace( 'ratio_container="' . $attr['ratio_container'] . '"' , '', $html );
 			return $this->get_ratio_container( $html, $post_thumbnail_id, $size, $attr['ratio_container'] );
