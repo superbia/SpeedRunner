@@ -11,14 +11,14 @@ namespace Sup\SpeedRunner\Template;
 use function Sup\SpeedRunner\speedrunner;
 
 /**
- * Get an image wrapped in a container with an intrinsic ratio.
+ * Get an image wrapped in a container with an optional intrinsic ratio.
  *
  * @param int          $attachment_id The attachment ID.
  * @param string       $size          The post thumbnail size.
  * @param string|array $attr          Optional. Query string or array of attributes. Default empty.
  * @return string Image markup wrapped in a ratio container.
  */
-function get_attachment_ratio_image( $attachment_id, $size, $attr = '' ) {
+function get_wrapped_attachment_image( $attachment_id, $size, $attr = '' ) {
 	$html  = '';
 	$icon  = false;
 	$image = wp_get_attachment_image(
@@ -28,11 +28,12 @@ function get_attachment_ratio_image( $attachment_id, $size, $attr = '' ) {
 		$attr
 	);
 
-	// A default class is set within get_ratio_container so just pass true if not set.
-	$ratio_class = ( isset( $attr['ratio_container'] ) ) ? $attr['ratio_container'] : true;
+	// A default class is set within get_image_wrapper so just pass true if not set.
+	$classes   = ( isset( $attr['wrapper'] ) ) ? $attr['wrapper'] : true;
+	$has_ratio = ( isset( $attr['ratio'] ) ) ? $attr['ratio'] : false;
 
 	if ( $image ) {
-		$html = speedrunner()->features()['speedrunner-enable-lazy-loading']->get_ratio_container( $image, $attachment_id, $size, $ratio_class );
+		$html = speedrunner()->features()['speedrunner-enable-lazy-loading']->get_image_wrapper( $image, $attachment_id, $size, $classes, $has_ratio );
 	}
 
 	return $html;

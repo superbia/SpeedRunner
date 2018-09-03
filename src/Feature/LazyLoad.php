@@ -60,7 +60,7 @@ class LazyLoad extends AbstractFeature {
 	public function register_hooks() {
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'modify_image_attributes' ), 10, 3 );
 		add_filter( 'the_content', array( $this, 'modify_content_image_attributes' ) );
-		add_filter( 'post_thumbnail_html', array( $this, 'wrap_post_thumbnail_with_ratio_container' ), 10, 5 );
+		add_filter( 'post_thumbnail_html', array( $this, 'wrap_post_thumbnail' ), 10, 5 );
 		add_action( 'embed_oembed_html', array( $this, 'lazyload_video_embeds' ), 10, 2 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 5 );
 
@@ -117,7 +117,7 @@ class LazyLoad extends AbstractFeature {
 	}
 
 	/**
-	 * Wrap post thumbnail in a ratio container
+	 * Wrap post thumbnail with an optional instrinsic ratio.
 	 *
 	 * @since 0.2.0
 	 *
@@ -129,11 +129,25 @@ class LazyLoad extends AbstractFeature {
 	 * @param string|array $attr              Optional. Query string or array of attributes. Default empty.
 	 * @return string Post thumbnail markup wrapped in a ratio container.
 	 */
-	public function wrap_post_thumbnail_with_ratio_container( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
-		if ( isset( $attr['ratio_container'] ) && $post_thumbnail_id ) {
-			// Remove the attr used to flag that thumbnail should be wrapped.
-			$html = str_replace( 'ratio_container="' . $attr['ratio_container'] . '"' , '', $html );
-			return $this->get_ratio_container( $html, $post_thumbnail_id, $size, $attr['ratio_container'] );
+	public function wrap_post_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+		if ( $post_thumbnail_id && isset( $attr['wrapper'] ) || isset( $attr['ratio'] ) ) {
+			$replacements = [];
+			$attr_keys    = [
+				'wrapper',
+				'ratio',
+			];
+
+			foreach ( $attr_keys as $key ) {
+				if ( isset( $attr[ $key ] ) ) {
+					$replacements[] = $key . '=' . $attr[ $key ] . '"';
+				}
+				$$key = ( isset( $attr[ $key ] ) ) ? $attr[ $key ] : false;
+			}
+
+			// Remove the attributes used to flag that thumbnail should be wrapped.
+			$html = str_replace( $replacements, '', $html );
+
+			return $this->get_image_wrapper( $html, $post_thumbnail_id, $size, $wrapper, $ratio );
 		}
 
 		return $html;
@@ -172,7 +186,13 @@ class LazyLoad extends AbstractFeature {
 		$args = $this->get_args();
 
 		if ( false !== $this->get_args()['enqueue'] ) {
-			wp_enqueue_script( 'lazysizes', $this->plugin->get_url( 'assets/dist/scripts/lazysizes.min.js' ), [], null, true );
+			wp_enqueue_script(
+				'lazysizes',
+				$this->plugin->get_url( 'assets/dist/scripts/lazysizes.min.js' ),
+				[],
+				SPDRNR_PLUGIN_VERSION,
+				true
+			);
 		}
 	}
 

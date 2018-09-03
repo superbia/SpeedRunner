@@ -55,16 +55,17 @@ Lazysizes adds the class lazyloading while the images are loading and the class 
 
 #### Template functions
 
-Lazy loading can be enabled on a per image basis by adding the `lazyload` class. Images can also be wrapped in a container with an intrinsic ratio. Ratio containers can currently only be applied to post thumbnails when using the standard WordPress template functions. A custom `get_attachment_ratio_image` function can be used to wrap other attachment images in a ratio container.
+Lazy loading can be enabled on a per image basis by adding the `lazyload` class. Images can also be wrapped in a container with an optional intrinsic ratio. Containers can currently only be applied to post thumbnails when using the standard WordPress template functions. A custom `get_wrapped_attachment_image` function can be used to wrap other attachment images.
 
 Lazy load the post thumbnail and wrap it in a container with an intrinsic ratio:
 ```php
 the_post_thumbnail( 'medium', [
-	'class'           => 'lazyload',
-	'ratio_container' => true,
+	'class'   => 'lazyload',
+	'wrapper' => 'u-ratio customClass',
+	'ratio'   => true,
 ] );
 ```
-The ratio is applied via an inline style with padding-bottom. The default ratio container class is `u-ratio`. The class can be customised by setting `ratio_container` to a string.
+The ratio is applied via an inline style with padding-bottom. The default ratio container class is `u-ratio`. The class can be customised by setting `wrapper` to a string.
 
 Lazy load a WordPress image attachment:
 ```php
@@ -80,13 +81,15 @@ echo wp_get_attachment_image(
 
 Lazy load a WordPress image attachment but wrapped in a container with an intrinsic ratio:
 ```php
-use function Sup\SpeedRunner\Template\get_attachment_ratio_image;
+use function Sup\SpeedRunner\Template\get_wrapped_attachment_image;
 
-echo get_attachment_ratio_image(
+echo get_wrapped_attachment_image(
 	get_post_thumbnail_id(),
 	'medium',
 	[
-		'class' => 'lazyload',
+		'class'   => 'lazyload',
+		'wrapper' => 'u-ratio customClass',
+		'ratio'   => true,
 	]
 );
 ```
