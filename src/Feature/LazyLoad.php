@@ -197,7 +197,7 @@ class LazyLoad extends AbstractFeature {
 	}
 
 	/**
-	 * Wrap an image with a ratio container.
+	 * Wrap an image with an optional instrinsic ratio.
 	 *
 	 * @since 0.2.0
 	 *
@@ -205,14 +205,18 @@ class LazyLoad extends AbstractFeature {
 	 * @param int    $attachment_id The attachment ID.
 	 * @param string $size          The post thumbnail size.
 	 * @param string $class         The class for the container. Default 'ratio'.
+	 * @param bool   $has_ratio     Should an intrinsic ratio be added to the wrapper? Default false.
 	 * @return string Image markup wrapped in a ratio container.
 	 */
-	public function get_ratio_container( $html, $attachment_id, $size, $class ) {
-		$image = wp_get_attachment_image_src( $attachment_id, $size );
-		$ratio = ( $image[2] / $image[1] ) * 100;
-		$class = ( is_string( $class ) ) ? $class : 'u-ratio';
+	public function get_image_wrapper( $html, $attachment_id, $size, $class, $has_ratio = false ) {
+		if ( $has_ratio ) {
+			$image = wp_get_attachment_image_src( $attachment_id, $size );
+			$ratio = ( $image[2] / $image[1] ) * 100;
+		}
 
-		return '<div class="' . esc_attr( $class ) . '" style="padding-bottom:' . esc_attr( $ratio ) . '%">' . $html . '</div>';
+		$class = ( is_string( $class ) ) ? $class : 'u-ratio';
+		$style = ( isset( $ratio ) ) ? ' style="padding-bottom:' . esc_attr( $ratio ) . '%"' : '';
+		return '<div class="' . esc_attr( $class ) . '"' . $style . '>' . $html . '</div>';
 	}
 
 	/**
