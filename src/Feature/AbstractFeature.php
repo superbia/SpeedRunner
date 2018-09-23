@@ -25,14 +25,6 @@ abstract class AbstractFeature implements HookProviderInterface {
 	protected $id;
 
 	/**
-	 * Feature slug.
-	 *
-	 * @since 0.1.0
-	 * @var string
-	 */
-	protected $slug;
-
-	/**
 	 * Plugin instance.
 	 *
 	 * @since 0.1.0
