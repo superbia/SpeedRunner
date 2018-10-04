@@ -65,5 +65,6 @@ require $speedrunner->get_path( 'includes/template-tags/images.php' );
  */
 $speedrunner
 	->features()
+	->register( new Feature\AssetRevisioning( $speedrunner ) )
 	->register( new Feature\CdnJquery( $speedrunner ) )
 	->register( new Feature\LazyLoad( $speedrunner ) );
