@@ -36,7 +36,7 @@ class AssetRevisioning extends AbstractFeature {
 	 *
 	 * @var array
 	 */
-	protected $manifest;
+	protected $manifest = [];
 
 	/**
 	 * Method for loading the feature.
@@ -45,7 +45,7 @@ class AssetRevisioning extends AbstractFeature {
 	 */
 	public function load() {
 		$defaults = [
-			'dist_path' => '/assets/dist/',
+			'dist_path' => 'assets/dist/',
 		];
 
 		$args       = get_theme_support( $this->get_id() );
@@ -61,39 +61,38 @@ class AssetRevisioning extends AbstractFeature {
 	 */
 	public function register_hooks() {
 		add_filter( 'init', array( $this, 'load_manifest' ) );
-		add_filter( 'style_loader_src', array( $this, 'filter_enqueued_urls' ), 10, 2 );
-		add_filter( 'script_loader_src', array( $this, 'filter_enqueued_urls' ), 10, 2 );
+		add_filter( 'theme_file_uri', array( $this, 'hashed_theme_file_url' ), 10, 2 );
 	}
 
 	/**
 	 * Load asset manifest.
 	 */
 	public function load_manifest() {
-		$manifest_path  = trailingslashit( $this->get_dist_path() ) . 'rev-manifest.json';
+		$manifest_path  = get_theme_file_path( $this->get_dist_path() . 'rev-manifest.json' );
 		$this->manifest = file_exists( $manifest_path )
 			? json_decode( file_get_contents( $manifest_path ), true ) // phpcs:ignore
 			: [];
 	}
 
 	/**
-	 * Load hashed asset filenames.
+	 * Filters theme file urls to return hashed version.
 	 *
-	 * @param string $src The source URL of the enqueued asset.
+	 * @param string $url  The file URL.
+	 * @param string $file The requested file to search for.
 	 */
-	public function filter_enqueued_urls( $src ) {
-		if ( WP_DEV_SERVER ) {
-			return $src;
+	public function hashed_theme_file_url( $url, $file ) {
+		if ( WP_DEV_SERVER || empty( $this->manifest ) ) {
+			return $url;
 		}
 
-		$base_url  = $this->get_dist_url();
-		$file_path = str_replace( $base_url, '', $src );
-		$file_path = remove_query_arg( 'ver', $file_path );
+		$file_path = str_replace( $this->get_dist_path(), '', $file );
 
 		if ( array_key_exists( $file_path, $this->manifest ) ) {
-			return $base_url . $this->manifest[ $file_path ];
+			$base_url = str_replace( $file, '', $url );
+			return $base_url . $this->get_dist_path() . $this->manifest[ $file_path ];
 		}
 
-		return $src;
+		return $url;
 	}
 
 	/**
@@ -104,20 +103,6 @@ class AssetRevisioning extends AbstractFeature {
 	 * @return string
 	 */
 	public function get_dist_path() {
-		return get_template_directory() . trailingslashit( $this->args->dist_path );
-	}
-
-	/**
-	 * Get the base assets url.
-	 *
-	 * @since 0.5.0
-	 *
-	 * @return string
-	 */
-	public function get_dist_url() {
-		$base_path = ( 'style_loader_src' === current_filter() )
-			? get_stylesheet_directory_uri()
-			: get_template_directory_uri();
-		return $base_path . trailingslashit( $this->args->dist_path );
+		return trailingslashit( ltrim( $this->args->dist_path, '/' ) );
 	}
 }
