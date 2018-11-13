@@ -43,6 +43,7 @@ class LazyLoad extends AbstractFeature {
 	public function load() {
 		$defaults = [
 			'enqueue' => true,
+			'pattern' => 'modern-transparent',
 		];
 
 		$args       = get_theme_support( $this->get_id() );
@@ -86,14 +87,14 @@ class LazyLoad extends AbstractFeature {
 			return $attr;
 		}
 
-		$one_pixel_gif = $this->get_placeholder_src();
+		$placeholder_src = $this->get_placeholder_src( $attachment->ID );
 
 		if ( isset( $attr['srcset'] ) ) {
 			$attr['data-srcset'] = $attr['srcset'];
-			$attr['srcset']      = $one_pixel_gif;
+			$attr['srcset']      = $placeholder_src;
 		} else {
 			$attr['data-src'] = $attr['src'];
-			$attr['src']      = $one_pixel_gif;
+			$attr['src']      = $placeholder_src;
 		}
 
 		return $attr;
@@ -183,8 +184,6 @@ class LazyLoad extends AbstractFeature {
 	 * @since 0.2.0
 	 */
 	public function enqueue_scripts() {
-		$args = $this->get_args();
-
 		if ( false !== $this->get_args()['enqueue'] ) {
 			wp_enqueue_script(
 				'lazysizes',
@@ -220,14 +219,21 @@ class LazyLoad extends AbstractFeature {
 	}
 
 	/**
-	 * 1px transparent gif placeholder.
+	 * Image placeholder.
 	 *
 	 * @since 0.2.0
 	 *
-	 * @return base64 encoded image src.
+	 * @param int $attachment_id The attachment ID.
+	 * @return WordPress thumbnail src. Defaults to base64 encoded transparent gif.
 	 */
-	public function get_placeholder_src() {
-		return 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+	public function get_placeholder_src( $attachment_id = false ) {
+		$placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+
+		if ( $attachment_id && 'modern-blur' === $this->get_pattern() ) {
+			$placeholder = wp_get_attachment_image_url( $attachment_id, $this->get_modern_blur_thumbnail_size() );
+		}
+
+		return $placeholder;
 	}
 
 	/**
@@ -239,5 +245,41 @@ class LazyLoad extends AbstractFeature {
 	 */
 	public function get_args() {
 		return $this->args;
+	}
+
+	/**
+	 * Get the loading pattern.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return string
+	 */
+	public function get_pattern() {
+		return ( is_array( $this->args['pattern'] ) ) ? $this->array_key_first( $this->args['pattern'] ) : $this->args['pattern'];
+	}
+
+	/**
+	 * Get modern-blur pattern thumbnail size.
+	 *
+	 * @since 0.6.0
+	 *
+	 * @return string
+	 */
+	public function get_modern_blur_thumbnail_size() {
+		$pattern = $this->args['pattern'];
+		return ( isset( $pattern['modern-blur']['thumbnail'] ) ) ? $pattern['modern-blur']['thumbnail'] : 'lowres';
+	}
+
+	/**
+	 * Get first array key.
+	 *
+	 * @since 0.6.0
+	 *
+	 * @param array $array An array to return the first key from.
+	 * @return string
+	 */
+	private function array_key_first( $array ) {
+		reset( $array );
+		return key( $array );
 	}
 }
