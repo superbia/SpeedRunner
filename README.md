@@ -23,7 +23,7 @@ $ composer install
 
 ## Lazy loading
 
-The lazy loading theme feature modifies default WordPress image and embed markup to faciliate lazy loading via the the modern transparent srcset pattern. The Lazysizes JavaScript library is enqueued automatically when using this feature.
+The lazy loading theme feature modifies default WordPress image and embed markup to faciliate lazy loading. The Lazysizes JavaScript library is enqueued automatically when using this feature.
 
 ### Usage
 
@@ -36,6 +36,50 @@ function theme_setup() {
 	add_theme_support( 'speedrunner-enable-lazy-loading' );
 }
 ```
+
+### Patterns
+
+The lazy loading feature uses the [modern transparent srcset pattern](https://github.com/aFarkas/lazysizes#modern-transparent-srcset-pattern) by default. The [LQIP/blurry image placeholder/Blur up image technique](https://github.com/aFarkas/lazysizes#lqipblurry-image-placeholderblur-up-image-technique) (modern-blur) is also supported.
+
+To use the modern-blur pattern you need to define the pattern when adding support for lazy loading in your theme:
+
+```php
+add_theme_support(
+	'speedrunner-enable-lazy-loading',
+	[
+		'pattern' => 'modern-blur',
+	]
+);
+```
+
+SpeedRunner will use the `lowres` thumnbnail size by default but you can define your own if you wish:
+
+```php
+add_theme_support(
+	'speedrunner-enable-lazy-loading',
+	[
+		'pattern' => [
+			'modern-blur' => [
+				'thumbnail' => 'custom_size_name',
+			],
+		],
+	],
+);
+```
+
+Then ensure that the `lowres` or your custom thumbnail size is added to your theme:
+
+```php
+add_image_size( 'lowres', 10 );
+```
+
+If you've added the thumbnail size after uploading images you will need to regenerate your thumbnails:
+
+```bash
+$ wp media regenerate --image_size=lowres
+```
+
+
 
 ### Styles
 
@@ -50,6 +94,21 @@ Lazysizes adds the class lazyloading while the images are loading and the class 
 .lazyloaded {
 	opacity: 1;
 	transition: opacity 300ms;
+}
+```
+
+If you're using the `modern-blur` pattern you might also want to add the following styles to smooth the transition from the lowres placeholder:
+
+```css
+.blur-up {
+	opacity: 1;
+	filter: blur( 5px );
+	transform: scale( 1.1 );
+	transition: all 2s;
+}
+
+.blur-up.lazyloaded {
+	filter: blur( 0 );
 }
 ```
 
