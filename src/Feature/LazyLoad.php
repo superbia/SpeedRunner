@@ -112,8 +112,14 @@ class LazyLoad extends AbstractFeature {
 	 * @return string Modified post content markup.
 	 */
 	public function modify_content_image_attributes( $content ) {
+		$classes = 'lazyload';
+
+		if ( 'modern-blur' === $this->get_pattern() ) {
+			$classes .= ' blur-up';
+		}
+
 		$content = str_replace( 'srcset=', 'srcset="' . $this->get_placeholder_src() . '" data-srcset=', $content );
-		$content = str_replace( 'wp-image', 'lazyload wp-image', $content );
+		$content = str_replace( 'wp-image', $classes . ' wp-image', $content );
 		return $content;
 	}
 

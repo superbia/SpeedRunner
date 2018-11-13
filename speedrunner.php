@@ -7,7 +7,7 @@
  * Author URI:   https://superbia.com.au
  * Text Domain:  speedrunner
  * Domain Path:  /languages
- * Version:      0.5.0
+ * Version:      0.6.0
  * License:      GPL v3
  *
  * @package      SpeedRunner
@@ -22,7 +22,7 @@ use Sup\SpeedRunner\Feature;
 /**
  * The plugin version.
  */
-define( 'SPDRNR_PLUGIN_VERSION', '0.5.0' );
+define( 'SPDRNR_PLUGIN_VERSION', '0.6.0' );
 
 /**
  * Require the Composer autoloader
