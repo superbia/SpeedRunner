@@ -28,12 +28,8 @@ function get_wrapped_attachment_image( $attachment_id, $size, $attr = '' ) {
 		$attr
 	);
 
-	// A default class is set within get_image_wrapper so just pass true if not set.
-	$classes   = ( isset( $attr['wrapper'] ) ) ? $attr['wrapper'] : true;
-	$has_ratio = ( isset( $attr['ratio'] ) ) ? $attr['ratio'] : false;
-
 	if ( $image ) {
-		$html = speedrunner()->features()['speedrunner-enable-lazy-loading']->get_image_wrapper( $image, $attachment_id, $size, $classes, $has_ratio );
+		$html = speedrunner()->features()['speedrunner-enable-lazy-loading']->wrap_post_thumbnail( $image, null, $attachment_id, $size, $attr );
 	}
 
 	return $html;

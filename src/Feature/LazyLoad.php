@@ -146,7 +146,7 @@ class LazyLoad extends AbstractFeature {
 
 			foreach ( $attr_keys as $key ) {
 				if ( isset( $attr[ $key ] ) ) {
-					$replacements[] = $key . '=' . $attr[ $key ] . '"';
+					$replacements[] = $key . '="' . $attr[ $key ] . '"';
 				}
 				$$key = ( isset( $attr[ $key ] ) ) ? $attr[ $key ] : false;
 			}
