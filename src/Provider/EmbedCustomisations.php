@@ -46,7 +46,11 @@ class EmbedCustomisations implements HookProviderInterface, PluginAwareInterface
 			return $return;
 		}
 
-		$classes[]   = 'embed';
+		$classes = [
+			'embed',
+			'embed--' . sanitize_html_class( $data->provider_name ),
+		];
+
 		$ratio_style = '';
 
 		if ( 'video' === $data->type ) {
