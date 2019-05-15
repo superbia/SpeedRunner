@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  SpeedRunner
- * Plugin URI:   https://bitbucket.org/superbiaweb/speedrunner
+ * Plugin URI:   https://github.com/superbia/SpeedRunner
  * Description:  Mach 3+ speed optimisations for WordPress.
  * Author:       Dylan Nichols, Superbia
  * Author URI:   https://superbia.com.au
