@@ -33,7 +33,7 @@ Enable lazy loading within your theme by using `add_theme_support` in your theme
 add_action( 'after_setup_theme', 'theme_setup' );
 
 function theme_setup() {
-	add_theme_support( 'speedrunner-enable-lazy-loading' );
+    add_theme_support( 'speedrunner-enable-lazy-loading' );
 }
 ```
 
@@ -45,10 +45,10 @@ To use the modern-blur pattern you need to define the pattern when adding suppor
 
 ```php
 add_theme_support(
-	'speedrunner-enable-lazy-loading',
-	[
-		'pattern' => 'modern-blur',
-	]
+    'speedrunner-enable-lazy-loading',
+    [
+        'pattern' => 'modern-blur',
+    ]
 );
 ```
 
@@ -56,14 +56,14 @@ SpeedRunner will use the `lowres` thumnbnail size by default but you can define 
 
 ```php
 add_theme_support(
-	'speedrunner-enable-lazy-loading',
-	[
-		'pattern' => [
-			'modern-blur' => [
-				'thumbnail' => 'custom_size_name',
-			],
-		],
-	],
+    'speedrunner-enable-lazy-loading',
+    [
+        'pattern' => [
+            'modern-blur' => [
+                'thumbnail' => 'custom_size_name',
+            ],
+        ],
+    ],
 );
 ```
 
@@ -89,11 +89,11 @@ Lazysizes adds the class lazyloading while the images are loading and the class 
 /* fade image in after load */
 .lazyload,
 .lazyloading {
-	opacity: 0;
+    opacity: 0;
 }
 .lazyloaded {
-	opacity: 1;
-	transition: opacity 300ms;
+    opacity: 1;
+    transition: opacity 300ms;
 }
 ```
 
@@ -101,14 +101,14 @@ If you're using the `modern-blur` pattern you might also want to add the followi
 
 ```css
 .blur-up {
-	opacity: 1;
-	filter: blur( 5px );
-	transform: scale( 1.1 );
-	transition: all 2s;
+    opacity: 1;
+    filter: blur( 5px );
+    transform: scale( 1.1 );
+    transition: all 2s;
 }
 
 .blur-up.lazyloaded {
-	filter: blur( 0 );
+    filter: blur( 0 );
 }
 ```
 
@@ -119,12 +119,12 @@ Lazy loading can be enabled on a per image basis by adding the `lazyload` class.
 Lazy load the post thumbnail and wrap it in a container with an intrinsic ratio:
 ```php
 the_post_thumbnail(
-	'medium',
-	[
-		'class'   => 'lazyload',
-		'wrapper' => 'u-ratio customClass',
-		'ratio'   => true,
-	]
+    'medium',
+    [
+        'class'   => 'lazyload',
+        'wrapper' => 'u-ratio customClass',
+        'ratio'   => true,
+    ]
 );
 ```
 The ratio is applied via an inline style with padding-bottom. The default ratio container class is `u-ratio`. The class can be customised by setting `wrapper` to a string.
@@ -132,12 +132,12 @@ The ratio is applied via an inline style with padding-bottom. The default ratio 
 Lazy load a WordPress image attachment:
 ```php
 echo wp_get_attachment_image(
-	get_post_thumbnail_id(),
-	'medium',
-	false,
-	[
-		'class' => 'lazyload',
-	]
+    get_post_thumbnail_id(),
+    'medium',
+    false,
+    [
+        'class' => 'lazyload',
+    ]
 );
 ```
 
@@ -146,13 +146,13 @@ Lazy load a WordPress image attachment but wrapped in a container with an intrin
 use function Sup\SpeedRunner\Template\get_wrapped_attachment_image;
 
 echo get_wrapped_attachment_image(
-	get_post_thumbnail_id(),
-	'medium',
-	[
-		'class'   => 'lazyload',
-		'wrapper' => 'u-ratio customClass',
-		'ratio'   => true,
-	]
+    get_post_thumbnail_id(),
+    'medium',
+    [
+        'class'   => 'lazyload',
+        'wrapper' => 'u-ratio customClass',
+        'ratio'   => true,
+    ]
 );
 ```
 
@@ -161,10 +161,10 @@ The Lazysizes JavaScript enqueued by SpeedRunner can be removed by passing the `
 
 ```php
 add_theme_support(
-	'speedrunner-enable-lazy-loading',
-	[
-		'enqueue' => false,
-	]
+    'speedrunner-enable-lazy-loading',
+    [
+        'enqueue' => false,
+    ]
 );
 ```
 
@@ -180,7 +180,7 @@ Enable the CDN version of jQuery within your theme by using `add_theme_support` 
 add_action( 'after_setup_theme', 'theme_setup' );
 
 function theme_setup() {
-	add_theme_support( 'speedrunner-enable-cdn-jquery' );
+    add_theme_support( 'speedrunner-enable-cdn-jquery' );
 }
 ```
 
@@ -198,7 +198,7 @@ Enable asset revisioning within your theme by using `add_theme_support` in your 
 add_action( 'after_setup_theme', 'theme_setup' );
 
 function theme_setup() {
-	add_theme_support( 'speedrunner-enable-asset-revisioning' );
+    add_theme_support( 'speedrunner-enable-asset-revisioning' );
 }
 ```
 
@@ -218,11 +218,9 @@ wp_enqueue_script( '_s-script', get_theme_file_uri( 'assets/dist/scripts/theme.b
 By default the dist directory is set to `assets/dist/`. This can be customised when enabling theme support:
 ```php
 add_theme_support(
-	'speedrunner-enable-asset-revisioning',
-	[
-		'dist_path' => 'assets/dist/',
-	]
+    'speedrunner-enable-asset-revisioning',
+    [
+        'dist_path' => 'assets/dist/',
+    ]
 );
 ```
-
-
