@@ -224,3 +224,9 @@ add_theme_support(
     ]
 );
 ```
+
+## Credits
+
+Thanks to the following projects/people that have influenced the development of SpeedRunner.
+
+* Brady Vercher for his [Structuring WordPress Plugins](https://www.cedaro.com/blog/structuring-wordpress-plugins/) article
