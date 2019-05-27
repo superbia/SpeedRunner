@@ -18,7 +18,6 @@ $ composer install
 ## Theme Features
 
 - [Lazy loading](#lazy-loading)
-- [CDN version of jQuery](#cdn-version-of-jquery)
 - [Asset revisioning](#asset-revisioning)
 
 ## Lazy loading
@@ -166,22 +165,6 @@ add_theme_support(
         'enqueue' => false,
     ]
 );
-```
-
-## CDN version of jQuery
-
-This SpeedRunner theme feature loads jQuery from the google CDN and fallsback to the local WordPress version when the CDN version is not available. The CDN version number is matched to the local WordPress version and resource hints are added for dns prefetching.
-
-### Usage
-
-Enable the CDN version of jQuery within your theme by using `add_theme_support` in your theme's `after_setup_theme` function.
-
-```php
-add_action( 'after_setup_theme', 'theme_setup' );
-
-function theme_setup() {
-    add_theme_support( 'speedrunner-enable-cdn-jquery' );
-}
 ```
 
 ## Asset revisioning

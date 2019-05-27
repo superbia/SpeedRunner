@@ -7,7 +7,7 @@
  * Author URI:   https://superbia.com.au
  * Text Domain:  speedrunner
  * Domain Path:  /languages
- * Version:      0.7.0
+ * Version:      0.7.1
  * License:      GPL v3
  *
  * @package      SpeedRunner
@@ -22,7 +22,7 @@ use Sup\SpeedRunner\Feature;
 /**
  * The plugin version.
  */
-define( 'SPDRNR_PLUGIN_VERSION', '0.6.0' );
+define( 'SPDRNR_PLUGIN_VERSION', '0.7.1' );
 
 /**
  * Require the Composer autoloader
@@ -66,5 +66,4 @@ require $speedrunner->get_path( 'includes/template-tags/images.php' );
 $speedrunner
 	->features()
 	->register( new Feature\AssetRevisioning( $speedrunner ) )
-	->register( new Feature\CdnJquery( $speedrunner ) )
 	->register( new Feature\LazyLoad( $speedrunner ) );
