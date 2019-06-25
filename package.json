@@ -15,6 +15,6 @@
     "gulp-uglify": "^3.0.0"
   },
   "dependencies": {
-    "lazysizes": "^4.0.4"
+    "lazysizes": "^5.1.0"
   }
 }
