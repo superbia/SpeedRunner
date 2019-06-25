@@ -8,7 +8,8 @@ const paths = {
 		src: [
 			'node_modules/lazysizes/plugins/respimg/ls.respimg.js',
 			'node_modules/lazysizes/plugins/unveilhooks/ls.unveilhooks.js',
-			'assets/src/scripts/lib/ls.bgset.js',
+			'node_modules/lazysizes/plugins/object-fit/ls.object-fit.js',
+			'node_modules/lazysizes/plugins/parent-fit/ls.parent-fit.js',
 			'node_modules/lazysizes/lazysizes.js',
 		],
 		dest: 'assets/dist/scripts/',
