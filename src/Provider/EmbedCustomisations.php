@@ -63,6 +63,11 @@ class EmbedCustomisations implements HookProviderInterface, PluginAwareInterface
 			}
 		}
 
-		return '<div class="' . esc_attr( implode( ' ', $classes ) ) . '"' . $ratio_style . '>' . $return . '</div>';
+		return sprintf(
+			'<div class="%1$s"><div class="embed-ratio"%2$s>%3$s</div></div>',
+			esc_attr( implode( ' ', $classes ) ),
+			$ratio_style,
+			$return
+		);
 	}
 }
